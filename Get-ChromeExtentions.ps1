@@ -1,12 +1,12 @@
-#Extract Google Chrome extention name from the chrome website
-$extentions = Import-Csv ".\extentions.csv" -Header extentions
-$result = foreach ($extention in $extentions.extentions)
+#Extract Google Chrome extension name from the chrome website
+$extensions = Import-Csv ".\extensions.csv" -Header extensions
+$result = foreach ($extension in $extensions.extensions)
 {
-    #URL to Google Extentions
-    $url = "https://chrome.google.com/webstore/detail/$extention"
+    #URL to Google extensions
+    $url = "https://chrome.google.com/webstore/detail/$extension"
     #Invoke-WebRequest to get the title
     $siteinfo = ((Invoke-WebRequest $url).content | Select-string -Pattern '(?<=<title>).*(?= - Chrome Web Store</title>)' -AllMatches).Matches.Value
     #Create the list
-    $siteinfo + "," + $extention + "," + $url
+    $siteinfo + "," + $extension + "," + $url
 }
 $result | Sort-Object
