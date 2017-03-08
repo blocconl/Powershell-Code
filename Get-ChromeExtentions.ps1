@@ -1,4 +1,4 @@
-#Extract Google Chrome extentions from the website
+#Extract Google Chrome extention name from the chrome website
 $extentions = Import-Csv ".\extentions.csv" -Header extentions
 $result = foreach ($extention in $extentions.extentions)
 {
